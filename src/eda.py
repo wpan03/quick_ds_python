@@ -1,4 +1,3 @@
-from numpy.lib import stride_tricks
 import pandas as pd
 
 
