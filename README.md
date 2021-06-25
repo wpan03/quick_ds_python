@@ -11,7 +11,7 @@ My understanding for data science and coding keep changing and thus the code in 
 ```
 ├── README.md                         <- You are here
 ├── src/                              <- Source module for the project 
-├── nice_things/                      <- Some codes that are not written in functions but can come in handy to directly copy and use
+├── nice_things/                      <- Some codes that can be directly copied and used
 ├── *.ipynb                           <- notebooks that demonstrate the usage functions in src
 ├── requirement.txt                   <- describe the python package version when this code is developed
 ```
