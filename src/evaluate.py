@@ -1,6 +1,8 @@
 from typing import Union
+
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn.model_selection import cross_validate
 from sklearn.pipeline import make_pipeline
@@ -50,4 +52,11 @@ def binary_cross_evaluate(X: Union[pd.DataFrame, np.ndarray],
         clf = mod
     result_dict = cross_validate(clf, X, y, cv=num_fold, scoring=['accuracy', 'f1'], **kwargs)
     return pd.DataFrame(result_dict)
-    
+
+def plot_cf(mod,
+            X: Union[pd.DataFrame, np.ndarray], 
+            y: Union[pd.Series, np.ndarray],
+            title: int = 'Confusion Matrix') -> None:
+    disp = metrics.plot_confusion_matrix(mod, X, y, cmap=plt.cm.Blues)
+    disp.ax_.set_title(title)
+    plt.show()
