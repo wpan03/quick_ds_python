@@ -46,7 +46,7 @@ def get_preprocessor(cat_pipeline, num_pipeline):
 
 
 def get_x_y(df: pd.DataFrame,
-            label_col: str) -> Tuple(pd.DataFrame, pd.Series):
+            label_col: str) -> Tuple[pd.DataFrame, pd.Series]:
     """Split a dataframe to features and labels"""
     X = df.drop([label_col], axis=1)
     y = df[label_col]
