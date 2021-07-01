@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.utils import shuffle
 
+
 def downsample(df: pd.DataFrame,
                label_col: str,
                majority_class: int = 0,
@@ -20,8 +21,9 @@ def downsample(df: pd.DataFrame,
     Returns:
         pd.Dataframe: the downsampled dataframe
     """
-    df_minority = df.query('label_col = @minority_class').reset_index(drop=True)
-    df_majority = df.query('label_col = @majority_class')\
+    df_minority = df.loc[df[label_col] == minority_class, :]\
+                    .reset_index(drop=True)
+    df_majority = df.loc[df[label_col] == majority_class, :]\
                     .sample(df_minority.shape[0] * ratio)\
                     .reset_index(drop=True)
     df_sampled = pd.concat([df_majority, df_minority], axis=0)
