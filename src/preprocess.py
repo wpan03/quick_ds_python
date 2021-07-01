@@ -1,5 +1,11 @@
+from typing import Tuple
+
 import pandas as pd
 from sklearn.utils import shuffle
+from sklearn.compose import (
+    make_column_selector,
+    make_column_transformer
+)
 
 
 def downsample(df: pd.DataFrame,
@@ -28,3 +34,20 @@ def downsample(df: pd.DataFrame,
                     .reset_index(drop=True)
     df_sampled = pd.concat([df_majority, df_minority], axis=0)
     return shuffle(df_sampled, random_state=36).reset_index(drop=True)
+
+
+def get_preprocessor(cat_pipeline, num_pipeline):
+    """A common pattern for preprocessing data with sklearn function"""
+    preprocessor = make_column_transformer(
+        (cat_pipeline, make_column_selector(dtype_include='object')),
+        (num_pipeline, make_column_selector(dtype_include='number'))
+    )
+    return preprocessor
+
+
+def get_x_y(df: pd.DataFrame,
+            label_col: str) -> Tuple(pd.DataFrame, pd.Series):
+    """Split a dataframe to features and labels"""
+    X = df.drop([label_col], axis=1)
+    y = df[label_col]
+    return X, y
