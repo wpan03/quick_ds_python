@@ -45,6 +45,13 @@ def get_preprocessor(cat_pipeline, num_pipeline):
     return preprocessor
 
 
+def do_transform(X: pd.DataFrame,
+                 preprocessor,
+                 col_name: list) -> pd.DataFrame:
+    """Transform a Dataframe with fitted sklearn transformer and add column name back to it"""
+    return pd.DataFrame(preprocessor.transform(X), columns=col_name)
+
+
 def get_x_y(df: pd.DataFrame,
             label_col: str) -> Tuple[pd.DataFrame, pd.Series]:
     """Split a dataframe to features and labels"""
