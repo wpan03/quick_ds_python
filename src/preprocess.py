@@ -30,7 +30,7 @@ def downsample(df: pd.DataFrame,
     df_minority = df.loc[df[label_col] == minority_class, :]\
                     .reset_index(drop=True)
     df_majority = df.loc[df[label_col] == majority_class, :]\
-                    .sample(df_minority.shape[0] * ratio)\
+                    .sample(df_minority.shape[0] * ratio, random_state=seed)\
                     .reset_index(drop=True)
     df_sampled = pd.concat([df_majority, df_minority], axis=0)
     return shuffle(df_sampled, random_state=36).reset_index(drop=True)
