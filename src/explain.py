@@ -4,7 +4,7 @@ import pandas as pd
 def get_lg_coef(df: pd.DataFrame, mod_lg) -> pd.DataFrame:
     """Get and sort the coefficent from logistic regression"""
     df_coef = pd.DataFrame({'name': df.columns,
-                            'value': mod_lg.coef_})
+                            'value': mod_lg.coef_.reshape(-1)})
     return df_coef.sort_values('value', ignore_index=True)
 
 
