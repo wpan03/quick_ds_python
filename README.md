@@ -38,7 +38,7 @@ This folder contain some codes that are not in a function, but can be handy for 
 
 ### Jupyter Notebooks
 
-+ `supervised_clf_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a classification model. 
++ `supervised_clf_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a classification model. [In Colab](https://colab.research.google.com/github/wpan03/quick_ds_python/blob/master/supervised_clf_demo.ipynb). 
 + `supervised_reg_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a regression model. 
 + `cluster_demo.ipynb`: demonstrates how the function in this repo can help developing a clustering model. 
 
