@@ -68,7 +68,17 @@ def cross_entropy_loss(y_true: np.ndarray, y_pred_1: np.ndarray, eps: float = 1e
 
 
 def get_binary_error_analysis(X: pd.DataFrame, y: pd.Series, mod, only_show_error: bool = False) -> pd.DataFrame:
-    """Calculate the loss for each row withe actual label and predicted label"""
+    """Run a error analysis for binary classification by calculating the loss for each observation and sort it
+
+    Args:
+        X (pd.DataFrame): the preprocessed input data
+        y (pd.Series): the real label 
+        mod (sklearn estimator): a fitted sklearn classifier
+        only_show_error (bool, optional): if True, only show rows that the model makes wrong prediction. Defaults to False.
+
+    Returns:
+        pd.DataFrame: the input data with actual label, predict label, and loss attached
+    """
     df_result = X.copy(deep=True)
     pred_prob = mod.predict_proba(X)
     pred_class = mod.predict(X)
