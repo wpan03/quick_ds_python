@@ -80,13 +80,10 @@ def get_binary_error_analysis(X: pd.DataFrame, y: pd.Series, mod, only_show_erro
         pd.DataFrame: the input data with actual label, predict label, and loss attached
     """
     df_result = X.copy(deep=True)
-    pred_prob = mod.predict_proba(X)
-    pred_class = mod.predict(X)
-    loss = cross_entropy_loss(y.values, pred_prob[:, 1])
-    df_result['class1_prob'] = pred_prob[:, 1]
-    df_result['pred_class'] = pred_class
+    df_result['class1_prob'] = mod.predict_proba(X)[:, 1]
+    df_result['pred_class'] = mod.predict(X)
     df_result['actual_class'] = y.values
-    df_result['loss'] = loss
+    df_result['loss'] = cross_entropy_loss(y.values, df_result['class1_prob'].values)
     if only_show_error:
         df_result = df_result[df_result['pred_class']
                               != df_result['actual_class']]
