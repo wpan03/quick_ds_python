@@ -4,6 +4,9 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.inspection import permutation_importance
+from treeinterpreter import treeinterpreter as ti
+import plotly.graph_objects as go
+
 
 
 def get_lg_coef(df: pd.DataFrame, mod_lg) -> pd.DataFrame:
@@ -88,3 +91,18 @@ def get_binary_error_analysis(X: pd.DataFrame, y: pd.Series, mod, only_show_erro
         df_result = df_result[df_result['pred_class']
                               != df_result['actual_class']]
     return df_result.sort_values('loss', ascending=False, ignore_index=True)
+
+
+def plot_single_instance_explaination(mod_rf, instance: pd.DataFrame) -> None:
+    """Explain how each variable contributes to the final prediction for a single instance"""
+    prediction, bias, contributions = ti.predict(mod_rf, instance)
+    which_class = np.argmax(prediction[0])
+    fig = go.Figure(go.Waterfall(
+        orientation="v",
+        measure=['absolute'] + len(instance.columns) *
+        ['relative'] + ['total'],
+        x=['start'] + list(instance.columns) + ['final_prediction'],
+        y=[bias[0][which_class]] +
+        list(contributions[0][:, which_class]) + [prediction[0][which_class]],
+    ))
+    fig.show()
