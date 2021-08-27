@@ -8,7 +8,6 @@ from treeinterpreter import treeinterpreter as ti
 import plotly.graph_objects as go
 
 
-
 def get_lg_coef(df: pd.DataFrame, mod_lg) -> pd.DataFrame:
     """Get and sort the coefficent from logistic regression"""
     df_coef = pd.DataFrame({'name': df.columns,
@@ -86,7 +85,8 @@ def get_binary_error_analysis(X: pd.DataFrame, y: pd.Series, mod, only_show_erro
     df_result['class1_prob'] = mod.predict_proba(X)[:, 1]
     df_result['pred_class'] = mod.predict(X)
     df_result['actual_class'] = y.values
-    df_result['loss'] = cross_entropy_loss(y.values, df_result['class1_prob'].values)
+    df_result['loss'] = cross_entropy_loss(
+        y.values, df_result['class1_prob'].values)
     if only_show_error:
         df_result = df_result[df_result['pred_class']
                               != df_result['actual_class']]
