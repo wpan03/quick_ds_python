@@ -13,8 +13,49 @@ My understanding for data science and coding keep changing and thus the code in 
 ├── src/                              <- Source module for the project 
 ├── nice_things/                      <- Some codes that can be directly copied and used
 ├── *.ipynb                           <- notebooks that demonstrate the usage functions in src
-├── requirement.txt                   <- describe the python package version when this code is developed
+├── pyproject.toml                    <- describe the python package version when this code is developed
 ```
+
+## Virtual Environment :clipboard:
+
+This section is mainly for development purpose. You can skip this section if you want to directly copy and use functions inside this repo. 
+
+We use [poetry](https://python-poetry.org/) to manage python dependencies in this project. You can install poetry with the following command. 
+
+### Install Poetry
+
+The following is copied the [official guide of poetry](https://python-poetry.org/docs/master/). 
+
+```zsh
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+```
+
+ The installer installs the `poetry` tool to Poetry’s `bin` directory. This location depends on your system:
+
+- `$HOME/.local/bin` for Unix
+- `%APPDATA%\Python\Scripts` on Windows
+
+If this directory is not on your `PATH`, you will need to add it manually if you want to invoke Poetry with simply `poetry`. What I did is that I add the following command in my `~/.zshrc`. (Mac OS)
+
+```zsh
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+### Activate Virtual Environment
+
+You can install all dependencies with the following.
+
+```zsh
+poetry install 
+```
+
+Now you can activate virtual environment with the following.
+
+```zsh
+poetry shell
+```
+
+You can exit the poetry shell by typing `exit` in the command line. 
 
 ## Tour :steam_locomotive:
 
