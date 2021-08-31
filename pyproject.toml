@@ -2,7 +2,7 @@
 name = "quick_ds_python"
 version = "0.1.0"
 description = ""
-authors = ["Martin Pan <wpan03@email.wm.edu>"]
+authors = ["Martin Pan"]
 
 [tool.poetry.dependencies]
 python = "^3.7.2"
