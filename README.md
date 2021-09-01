@@ -16,6 +16,34 @@ My understanding for data science and coding keep changing and thus the code in 
 ├── pyproject.toml                    <- describe the python package version when this code is developed
 ```
 
+## Tour :steam_locomotive:
+
+This section gives an overview of the purpose of each file.
+
+### src
+
+This folder contains modularized functions that can be easily reused. 
+
++ `eda.py`: contain codes that is helpful for exploring data analysis.
++ `model_supervised.py`: contain codes that develop a supervised learning model, including codes for hyper-parameter tuning.
++ `evaluate.py`: contain functions that evaluate the performance of a supervised learning model.
++ `explain.py`: contain codes that explain why a model makes certain prediction.
++ `model_cluster.py`: contain functions that simplify the process of developing and analyzing cluster models, especially for KMeans. 
+
+### nice_things
+
+This folder contain some codes that are not in a function, but can be handy for copying when developing. 
+
++ `tune_grid.py`: contain predefined parameter grids that can be a good start point for doing hyper-parameter tuning.
+
+### Jupyter Notebooks
+
++ `supervised_clf_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a classification model. [In Colab](https://colab.research.google.com/github/wpan03/quick_ds_python/blob/master/supervised_clf_demo.ipynb). 
++ `supervised_reg_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a regression model. 
++ `cluster_demo.ipynb`: demonstrates how the function in this repo can help developing a clustering model. 
+
+
+
 ## Virtual Environment :clipboard:
 
 This section is mainly for development purpose. You can skip this section if you want to directly copy and use functions inside this repo. 
@@ -55,31 +83,4 @@ Now you can activate virtual environment with the following.
 poetry shell
 ```
 
-You can exit the poetry shell by typing `exit` in the command line. 
-
-## Tour :steam_locomotive:
-
-This section gives an overview of the purpose of each file.
-
-### src
-
-This folder contains modularized functions that can be easily reused. 
-
-+ `eda.py`: contain codes that is helpful for exploring data analysis.
-+ `model_supervised.py`: contain codes that develop a supervised learning model, including codes for hyper-parameter tuning.
-+ `evaluate.py`: contain functions that evaluate the performance of a supervised learning model.
-+ `explain.py`: contain codes that explain why a model makes certain prediction.
-+ `model_cluster.py`: contain functions that simplify the process of developing and analyzing cluster models, especially for KMeans. 
-
-### nice_things
-
-This folder contain some codes that are not in a function, but can be handy for copying when developing. 
-
-+ `tune_grid.py`: contain predefined parameter grids that can be a good start point for doing hyper-parameter tuning.
-
-### Jupyter Notebooks
-
-+ `supervised_clf_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a classification model. [In Colab](https://colab.research.google.com/github/wpan03/quick_ds_python/blob/master/supervised_clf_demo.ipynb). 
-+ `supervised_reg_demo.ipynb`: demonstrates how the function in this repo can help various stages when developing a regression model. 
-+ `cluster_demo.ipynb`: demonstrates how the function in this repo can help developing a clustering model. 
-
+You can exit the poetry shell by typing `exit` in the command line.
