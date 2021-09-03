@@ -2,20 +2,19 @@ from typing import Tuple
 
 import pandas as pd
 from sklearn.utils import shuffle
-from sklearn.compose import (
-    make_column_selector,
-    make_column_transformer
-)
+from sklearn.compose import make_column_selector, make_column_transformer
 
 
-def downsample(df: pd.DataFrame,
-               label_col: str,
-               majority_class: int = 0,
-               minority_class: int = 1,
-               ratio: int = 2,
-               seed: int = 36) -> pd.DataFrame:
-    """Downsample the majority class to a certain ratio of 
-    the minority class for a binary classification 
+def downsample(
+    df: pd.DataFrame,
+    label_col: str,
+    majority_class: int = 0,
+    minority_class: int = 1,
+    ratio: int = 2,
+    seed: int = 36,
+) -> pd.DataFrame:
+    """Downsample the majority class to a certain ratio of
+    the minority class for a binary classification
 
     Args:
         df (pd.DataFrame): the original dataframe
@@ -27,11 +26,12 @@ def downsample(df: pd.DataFrame,
     Returns:
         pd.Dataframe: the downsampled dataframe
     """
-    df_minority = df.loc[df[label_col] == minority_class, :]\
-                    .reset_index(drop=True)
-    df_majority = df.loc[df[label_col] == majority_class, :]\
-                    .sample(df_minority.shape[0] * ratio, random_state=seed)\
-                    .reset_index(drop=True)
+    df_minority = df.loc[df[label_col] == minority_class, :].reset_index(drop=True)
+    df_majority = (
+        df.loc[df[label_col] == majority_class, :]
+        .sample(df_minority.shape[0] * ratio, random_state=seed)
+        .reset_index(drop=True)
+    )
     df_sampled = pd.concat([df_majority, df_minority], axis=0)
     return shuffle(df_sampled, random_state=36).reset_index(drop=True)
 
@@ -39,21 +39,18 @@ def downsample(df: pd.DataFrame,
 def get_preprocessor(cat_pipeline, num_pipeline):
     """A common pattern for preprocessing data with sklearn function"""
     preprocessor = make_column_transformer(
-        (cat_pipeline, make_column_selector(dtype_include='object')),
-        (num_pipeline, make_column_selector(dtype_include='number'))
+        (cat_pipeline, make_column_selector(dtype_include="object")),
+        (num_pipeline, make_column_selector(dtype_include="number")),
     )
     return preprocessor
 
 
-def do_transform(X: pd.DataFrame,
-                 preprocessor,
-                 col_name: list) -> pd.DataFrame:
+def do_transform(X: pd.DataFrame, preprocessor, col_name: list) -> pd.DataFrame:
     """Transform a Dataframe with fitted sklearn transformer and add column name back to it"""
     return pd.DataFrame(preprocessor.transform(X), columns=col_name)
 
 
-def get_x_y(df: pd.DataFrame,
-            label_col: str) -> Tuple[pd.DataFrame, pd.Series]:
+def get_x_y(df: pd.DataFrame, label_col: str) -> Tuple[pd.DataFrame, pd.Series]:
     """Split a dataframe to features and labels"""
     X = df.drop([label_col], axis=1)
     y = df[label_col]
