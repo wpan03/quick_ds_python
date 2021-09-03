@@ -43,14 +43,15 @@ This folder contain some codes that are not in a function, but can be handy for 
 + `cluster_demo.ipynb`: demonstrates how the function in this repo can help developing a clustering model. 
 
 
+## Development Guide :clipboard:
 
-## Virtual Environment :clipboard:
+This section is mainly for development purpose. You can skip this section if you want to directly copy and use functions inside this repo.
 
-This section is mainly for development purpose. You can skip this section if you want to directly copy and use functions inside this repo. 
+### Virtual Environment
 
 We use [poetry](https://python-poetry.org/) to manage python dependencies in this project. You can install poetry with the following command. 
 
-### Install Poetry
+#### Install Poetry
 
 The following is copied the [official guide of poetry](https://python-poetry.org/docs/master/). 
 
@@ -69,12 +70,12 @@ If this directory is not on your `PATH`, you will need to add it manually if you
 export PATH="$HOME/.local/bin:$PATH"
 ```
 
-### Activate Virtual Environment
+#### Activate Virtual Environment
 
 You can install all dependencies with the following.
 
 ```zsh
-poetry install 
+poetry install
 ```
 
 Now you can activate virtual environment with the following.
@@ -84,3 +85,9 @@ poetry shell
 ```
 
 You can exit the poetry shell by typing `exit` in the command line.
+
+### Git Hook
+We use the [pre-commit](https://github.com/pre-commit/pre-commit) library to automatically check `.py` scripts with `flake8` and `black` before each commit. After setting up the virtual environment, you can install the hook with the following.
+```
+pre-commit install
+```
