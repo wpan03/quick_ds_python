@@ -10,7 +10,8 @@ My understanding for data science and coding keep changing and thus the code in 
 
 ```
 ├── README.md                         <- You are here
-├── src/                              <- Source module for the project 
+├── src/                              <- Source module for the project
+├── test/                             <- codes for unit test
 ├── nice_things/                      <- Some codes that can be directly copied and used
 ├── *.ipynb                           <- notebooks that demonstrate the usage functions in src
 ├── pyproject.toml                    <- describe the python package version when this code is developed
@@ -90,4 +91,10 @@ You can exit the poetry shell by typing `exit` in the command line.
 We use the [pre-commit](https://github.com/pre-commit/pre-commit) library to automatically check `.py` scripts with `flake8` and `black` before each commit. After setting up the virtual environment, you can install the hook with the following.
 ```
 pre-commit install
+```
+
+### Unit Test
+We implement unit tests for functions in `src/`. (Work in Progress). You can run the unit test with the following command.
+```
+pytest
 ```
