@@ -1,8 +1,38 @@
-from typing import Tuple
+import re
+from typing import List, Tuple, Union
 
 import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.compose import make_column_selector, make_column_transformer
+
+
+# https://stackoverflow.com/questions/28986489/how-to-replace-text-in-a-column-of-a-pandas-dataframe/63139937
+def clean_column_name(
+    df: pd.DataFrame,
+    to_remove: Union[str, List[str]],
+    to_replace: Union[str, List[str]],
+    value: str = "_",
+) -> pd.DataFrame:
+    """Replace unwanted characters in the dataframe column name
+
+    Args:
+        df (pd.DataFrame): the input dataframe
+        to_remove (Union[str, List): a list or a single character that wants to be removed
+        to_replace (Union[str, List): a list or a single character that wants to be replaced
+        value (str, optional): what character to put to those being replaced. Defaults to "_".
+
+    Returns:
+        pd.DataFrame: the dataframe with column name corrected
+    """
+    if isinstance(to_remove, list):
+        to_remove = "[" + re.escape("".join(to_remove)) + "]"
+    df.columns = df.columns.str.replace(to_remove, "", regex=True)
+
+    if isinstance(to_replace, list):
+        to_replace = "[" + re.escape("".join(to_replace)) + "]"
+    df.columns = df.columns.str.replace(to_replace, value, regex=True)
+
+    return df
 
 
 def downsample(
