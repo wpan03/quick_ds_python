@@ -34,4 +34,4 @@ def get_freq_table(df: pd.DataFrame, col: str) -> pd.DataFrame:
 def plot_corr_heatmap(df: pd.DataFrame) -> None:
     """Plot the correlation matrix of a dataframe in heatmap"""
     corr_matrix = df.corr()
-    return corr_matrix.style.background_gradient(cmap="coolwarm").set_precision(2)
+    return corr_matrix.style.background_gradient(cmap="coolwarm").format(precision=2)
