@@ -1,6 +1,6 @@
 import pandas as pd
 
-from src.preprocess import clean_column_name
+from src.preprocess import clean_column_name, remove_non_numeric
 
 
 def test_clean_column_name():
@@ -22,4 +22,11 @@ def test_clean_column_name():
         }
     )
 
+    pd.testing.assert_frame_equal(df_true, df_test)
+
+
+def test_remove_non_numeric():
+    df_in = pd.DataFrame({"hi": [1, 2, 3, 4], "price": ["$1.2", "1_3", "100", "1.0"]})
+    df_true = pd.DataFrame({"hi": [1, 2, 3, 4], "price": [1.2, 13, 100, 1.0]})
+    df_test = remove_non_numeric(df_in, "price")
     pd.testing.assert_frame_equal(df_true, df_test)

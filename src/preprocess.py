@@ -85,3 +85,9 @@ def get_x_y(df: pd.DataFrame, label_col: str) -> Tuple[pd.DataFrame, pd.Series]:
     X = df.drop([label_col], axis=1)
     y = df[label_col]
     return X, y
+
+
+def remove_non_numeric(df: pd.DataFrame, col: str) -> pd.DataFrame:
+    df[col] = df[col].str.replace(r"[^0-9.]+", "", regex=True)
+    df[col] = pd.to_numeric(df[col], errors="raise")
+    return df
