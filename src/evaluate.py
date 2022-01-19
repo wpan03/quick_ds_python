@@ -63,7 +63,7 @@ def plot_cf(
     mod,
     X: Union[pd.DataFrame, np.ndarray],
     y: Union[pd.Series, np.ndarray],
-    title: int = "Confusion Matrix",
+    title: str = "Confusion Matrix",
 ) -> None:
     disp = metrics.plot_confusion_matrix(mod, X, y, cmap=plt.cm.Blues)
     disp.ax_.set_title(title)
