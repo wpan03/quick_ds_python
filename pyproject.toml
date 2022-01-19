@@ -25,6 +25,7 @@ flake8 = "^3.9.2"
 black = "^21.8b0"
 pytest = "^6.2.5"
 pytype = "^2022.1.13"
+mypy = "^0.931"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
