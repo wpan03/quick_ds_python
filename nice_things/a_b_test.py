@@ -1,6 +1,8 @@
 import statsmodels.stats.api as sms
 from math import ceil
 
+# Reference: https://towardsdatascience.com/ab-testing-with-python-e5964dd66143#2.-Collecting-and-preparing-the-data
+
 
 def get_sample_size_for_prop_test(
     base_rate: float,
