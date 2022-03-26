@@ -33,8 +33,9 @@ This folder contains modularized functions that can be easily reused.
 
 ### nice_things
 
-This folder contain some codes that are not in a function, but can be handy for copying when developing. 
+This folder contain some codes that might not be used for developing statistical models, but can be handy for copying when developing. 
 
++ `a_b_test.py`: some codes for doing a/b test analysis
 + `tune_grid.py`: contain predefined parameter grids that can be a good start point for doing hyper-parameter tuning.
 
 ### Jupyter Notebooks
